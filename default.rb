@@ -22,3 +22,13 @@ end
 
 run "chmod +x bin/server"
 
+create_file 'bin/create_secrets_yml' do <<-EOF
+#/bin/bash
+
+echo "creating config/secrets.yml"
+echo "development:\n  secret_key_base: $(bin/rake secret)" > config/secrets.yml
+EOF
+end
+
+run "chmod +x bin/create_secrets_yml"
+
